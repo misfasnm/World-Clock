@@ -1,5 +1,24 @@
-let londonElement = document.querySelector("#london");
-let londonDateElement = londonElement.querySelector(".date");
-let londonTimeElement = londonElement.querySelector(".time");
-londonDateElement.innerHTML = moment().format("dddd MMMM Do YYYY");
-londonTimeElement.innerHTML = moment().format("h:mm:ss a");
+function updateTime() {
+  //London
+  let londonElement = document.querySelector("#london");
+  let londonDateElement = londonElement.querySelector(".date");
+  let londonTimeElement = londonElement.querySelector(".time");
+  let londonTime = moment().tz("Europe/London");
+
+  londonDateElement.innerHTML = londonTime.format("dddd MMMM Do YYYY");
+  londonTimeElement.innerHTML = londonTime.format(
+    "h:mm:ss [<small>]A[</small>]"
+  );
+
+  //Paris
+
+  let parisElement = document.querySelector("#paris");
+  let parisDateElement = parisElement.querySelector(".date");
+  let parisTimeElement = parisElement.querySelector(".time");
+  let parisTime = moment().tz("Europe/Paris");
+
+  parisDateElement.innerHTML = parisTime.format("dddd MMMM Do YYYY");
+  parisTimeElement.innerHTML = parisTime.format("h:mm:ss [<small>]A[</small>]");
+}
+updateTime();
+setInterval(updateTime, 1000);
